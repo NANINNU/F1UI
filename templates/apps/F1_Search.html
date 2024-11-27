@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>F1 Search</title>
+</head>
+<body>
+    <h1>F1 Search</h1>
+    <form method="GET" action="{% url 'f1_search' %}">
+        <select name="category" id="category">
+            <option value="drivers" {% if query_category == "drivers" %}selected{% endif %}>Drivers</option>
+            <option value="constructors" {% if query_category == "constructors" %}selected{% endif %}>Constructors</option>
+        </select>
+        <input type="text" name="query" value="{{ query }}" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Results</h2>
+    <ul>
+        {% for item in results %}
+            <li>{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
