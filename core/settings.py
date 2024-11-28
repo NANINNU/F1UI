@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     "apps.charts", 
     "apps.tables",
     "apps.tasks",
+    "f1Wiki.constructors",
+    "f1Wiki.circuits",
+    "f1Wiki.players",
+    "f1Wiki.rules",
 
     "django_celery_results",
 
@@ -115,6 +119,14 @@ DB_PASS     = os.getenv('DB_PASS'     , None)
 DB_HOST     = os.getenv('DB_HOST'     , None)
 DB_PORT     = os.getenv('DB_PORT'     , None)
 DB_NAME     = os.getenv('DB_NAME'     , None)
+
+print(DB_ENGINE)
+print(DB_USERNAME)
+print(DB_PASS)
+print(DB_HOST)
+print(DB_PORT)
+print(DB_NAME)
+# print(DB_HOST)
 
 if DB_ENGINE and DB_NAME and DB_USERNAME:
     DATABASES = { 

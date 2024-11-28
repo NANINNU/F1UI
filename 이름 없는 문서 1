@@ -1,0 +1,7 @@
+f1 project
+
+docker run
+# Optional (kill all existing containers)
+$ docker container kill $(docker ps -q) ; docker container rm $(docker ps -a -q) ; docker network prune -f 
+# Start the APP
+$ docker-compose up --build 
