@@ -32,7 +32,7 @@ if not SECRET_KEY:
 
 # Enable/Disable DEBUG Mode
 DEBUG = str2bool(os.environ.get('DEBUG'))
-#print(' DEBUG -> ' + str(DEBUG) ) 
+print(' DEBUG -> ' + str(DEBUG) ) 
 
 # Hosts Settings
 ALLOWED_HOSTS = ['*']
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
 
     "home",
     "apps.common",
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
     "apps.charts", 
     "apps.tables",
     "apps.tasks",
+    "apps.f1",
     "f1Wiki.constructors",
     "f1Wiki.circuits",
     "f1Wiki.players",
@@ -131,12 +133,12 @@ print(DB_NAME)
 if DB_ENGINE and DB_NAME and DB_USERNAME:
     DATABASES = { 
       'default': {
-        'ENGINE'  : 'django.db.backends.' + DB_ENGINE, 
-        'NAME'    : DB_NAME,
-        'USER'    : DB_USERNAME,
-        'PASSWORD': DB_PASS,
-        'HOST'    : DB_HOST,
-        'PORT'    : DB_PORT,
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME'    : 'F1db',
+        'USER'    : 'root',
+        'PASSWORD': '6251581aA',
+        'HOST'    : 'localhost',
+        'PORT'    : '3306',
         }, 
     }
 else:
