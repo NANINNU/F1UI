@@ -1,7 +1,7 @@
 module.exports = {
   content: [
     './templates/**/*.html',
-    './static/**/*.js',
+    './static/**/*.{js}',
     './node_modules/flowbite/**/*.js'
   ],
   safelist: [
