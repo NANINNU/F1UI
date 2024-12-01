@@ -1,12 +1,231 @@
+{% extends "layouts/base.html" %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Player</title>
-</head>
-<body>
-    <h1>Welcome to the F1 Player Page</h1>
-</body>
-</html>
+{% block content %}
+
+<main class="flex justify-center items-center sm:justify-start md:justify-center min-h-screen">
+
+  <div class="px-4 pt-6">
+    <div class="grid gap-4">
+      
+      <div
+        class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        <h2 class="text-lg font-bold text-gray-700 dark:text-gray-300">F1 Rules</h2>
+        <div id="pdf-container" 
+             class="mt-4 space-y-4 overflow-y-scroll max-h-[70vh] bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+{% endblock content %}
+
+{% block extra_js %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
+<script>
+  const pdfUrl = "{% static 'dist/img/f1Ruls.pdf' %}";
+  const container = document.getElementById('pdf-container');
+
+  const renderAllPages = (pdf) => {
+    const totalPages = pdf.numPages;
+
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+      pdf.getPage(pageNum).then(page => {
+        const canvas = document.createElement('canvas');
+        canvas.classList.add('w-full', 'border', 'rounded', 'shadow-sm', 'dark:border-gray-700', 'bg-white');
+        
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const ctx = canvas.getContext('2d');
+        const renderContext = { canvasContext: ctx, viewport: viewport };
+        page.render(renderContext);
+        container.appendChild(canvas);
+      });
+    }
+  };
+
+  pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+    renderAllPages(pdf);
+  }).catch(error => {
+    console.error("Error loading PDF: ", error);
+  });
+</script>
+
+
+<script>
+
+  // Pull data from the backend
+  const products = JSON.parse('{{ products | safe }}');
+
+  function getProductsBarChart(data) {
+    return {
+      colors: ['#1A56DB', '#FDBA8C'],
+      series: [{
+        name: 'Product',
+        color: '#1A56DB',
+        data: data.map(product => ({ x: product.fields.name, y: product.fields.price }))
+      }],
+      chart: {
+        type: 'bar',
+        height: '420px',
+        fontFamily: 'Inter, sans-serif',
+        foreColor: '#4B5563',
+        toolbar: {
+          show: false
+        }
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: '90%',
+          borderRadius: 3
+        }
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        style: {
+          fontSize: '14px',
+          fontFamily: 'Inter, sans-serif'
+        },
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'darken',
+            value: 1
+          }
+        }
+      },
+      stroke: {
+        show: true,
+        width: 5,
+        colors: ['transparent']
+      },
+      grid: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      xaxis: {
+        floating: false,
+        labels: {
+          show: false
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+      },
+      yaxis: {
+        show: false
+      },
+      fill: {
+        opacity: 1
+      }
+    };
+  }
+
+  const getProductsPieChart = (data) => {
+    let trafficChannelsChartColors = {};
+    if (document.documentElement.classList.contains('dark')) {
+      trafficChannelsChartColors = {
+        strokeColor: '#1f2937'
+      };
+    } else {
+      trafficChannelsChartColors = {
+        strokeColor: '#ffffff'
+      };
+    }
+
+    return {
+      series: data.map(product => product.fields.price),
+      labels: data.map(product => product.fields.name),
+      colors: ['#16BDCA', '#FDBA8C', '#1A56DB'],
+      chart: {
+        type: 'donut',
+        height: 400,
+        fontFamily: 'Inter, sans-serif',
+        toolbar: {
+          show: false
+        },
+      },
+      responsive: [{
+        breakpoint: 430,
+        options: {
+          chart: {
+            height: 300
+          }
+        }
+      }],
+      stroke: {
+        colors: [trafficChannelsChartColors.strokeColor]
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'darken',
+            value: 0.9
+          }
+        }
+      },
+      tooltip: {
+        shared: true,
+        followCursor: false,
+        fillSeriesColor: false,
+        inverseOrder: true,
+        style: {
+          fontSize: '14px',
+          fontFamily: 'Inter, sans-serif'
+        },
+        x: {
+          show: true,
+          formatter: function (_, { seriesIndex, w }) {
+            const label = w.config.labels[seriesIndex];
+            return label;
+          }
+        },
+        y: {
+          formatter: function (value) {
+            return value;
+          }
+        }
+      },
+      grid: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+    };
+  };
+
+//   (async () => {
+    // const productsBarChart = new ApexCharts(document.getElementById('products-bar-chart'), getProductsBarChart(products));
+    // productsBarChart.render();
+
+    // const productsPieChart = new ApexCharts(document.getElementById('products-pie-chart'), getProductsPieChart(products));
+    // productsPieChart.render();
+
+//     document.addEventListener('dark-mode', function () {
+//       productsPieChart.updateOptions(getProductsPieChart(products));
+//     });
+//   })();
+
+</script>
+
+
+{% endblock extra_js %}
