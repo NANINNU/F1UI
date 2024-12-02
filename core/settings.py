@@ -31,6 +31,7 @@ if not SECRET_KEY:
     SECRET_KEY = 'SuperSecret776'
 
 # Enable/Disable DEBUG Mode
+# DEBUG = False
 DEBUG = str2bool(os.environ.get('DEBUG'))
 print(' DEBUG -> ' + str(DEBUG) ) 
 
