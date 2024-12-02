@@ -8,7 +8,7 @@
                 <ul class="pb-2 space-y-2">
                     <li>
                         <form action="#" method="GET" class="lg:hidden">
-                            <label for="mobile-search" class="sr-only">Search</label>
+                            <label for="mobile-search" class="sr-only">F1 Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
@@ -32,7 +32,7 @@
                                 <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                                 <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                             </svg>
-                            <span class="ml-3" sidebar-toggle-item>Dashboard</span>
+                            <span class="ml-3" sidebar-toggle-item>F1DB</span>
                         </a>
                     </li>
                     <li>
@@ -45,7 +45,7 @@
                                     d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-3" sidebar-toggle-item>Starter Page</span>
+                            <span class="ml-3" sidebar-toggle-item>로그인</span>
                         </a>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -109,7 +109,7 @@
                             </svg>
                         </button>
                         <ul id="dropdown-dashboard" class="py-2 space-y-2 block">
-                            <!-- <li>
+                             <li>
                                 <a href="{% url 'datatables' %}"
                                     class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 {% if 'datatables' in segment %} bg-gray-100 dark:bg-gray-700 {% endif %}">DataTables</a>
                             </li> -->
@@ -124,7 +124,7 @@
                             </li>
                             
                             
-                            <li>
+                            <!-- <li>
                                 <a href="{% url 'charts' %}"
                                     class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 {% if 'charts' in segment %} bg-gray-100 dark:bg-gray-700 {% endif %}">Charts</a>
                             </li>
@@ -136,8 +136,8 @@
                             <li>
                                 <a href="{% url 'tasks' %}"
                                     class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 {% if 'tasks' in segment %} bg-gray-100 dark:bg-gray-700 {% endif %}">Tasks</a>
-                            </li>
-                        </ul> -->
+                            </li> -->
+                        </ul>
                         <!-- 기존 드롭다운 버튼들 -->
 
 <!-- 새 드롭다운 버튼 추가 -->
@@ -151,9 +151,9 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
 </svg>
 <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>F1 Wiki</span>
 <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd"
+    <!-- <path fill-rule="evenodd"
         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-        clip-rule="evenodd"></path>
+        clip-rule="evenodd"></path> -->
 </svg>
 </button>
 <ul id="dropdown-f1wiki" class="py-2 space-y-2 block">
@@ -188,7 +188,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                             <span class="ml-3" sidebar-toggle-item>Server Settings</span>
                         </a>
                     </li>-->
-                    <li>
+                    <!-- <li>
                         <a target="_blank" rel="noopener" href="https://rocket-django-pro.onrender.com/tables/"
                             class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -199,8 +199,8 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                             </svg>
                             <span class="ml-3" sidebar-toggle-item>PRO DataTables</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a target="_blank" rel="noopener" href="https://rocket-django-pro.onrender.com/charts/"
                             class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -214,8 +214,8 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                             </svg>
                             <span class="ml-3" sidebar-toggle-item>PRO Charts</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a target="_blank" rel="noopener" href="https://rocket-django-pro.onrender.com/file-manager/"
                             class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
@@ -223,7 +223,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                             </svg>
                             <span class="ml-3" sidebar-toggle-item>PRO File Manager</span>
                         </a>
-                    </li>                    
+                    </li>                     -->
                 </ul>
                 <div class="pt-2 space-y-2">
                     <a href="https://appseed.us/product/rocket/django/" target="_blank"
@@ -246,7 +246,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                         </svg>
                         <span class="ml-3" sidebar-toggle-item>Documentation</span>
                     </a>
-                    <a href="https://appseed.us/product/rocket-pro/django/" target="_blank"
+                    <!-- <a href="https://appseed.us/product/rocket-pro/django/" target="_blank"
                         class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                         <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -255,7 +255,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span class="ml-3" sidebar-toggle-item>PRO Version</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -282,7 +282,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                 Settings page
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <button type="button" data-dropdown-toggle="language-dropdown"
+            <!-- <button type="button" data-dropdown-toggle="language-dropdown"
                 class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                 <svg class="h-5 w-5 rounded-full mt-0.5" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900">
@@ -312,12 +312,12 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                         <use xlink:href="#e" x="2470" />
                     </g>
                 </svg>
-            </button>
+            </button> -->
 
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700"
                 id="language-dropdown">
                 <ul class="py-1" role="none">
-                    <li>
+                    <!-- <li>
                         <a href="#"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                             role="menuitem">
@@ -401,7 +401,7 @@ aria-controls="dropdown-f1wiki" data-collapse-toggle="dropdown-f1wiki">
                                 中文 (繁體)
                             </div>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
