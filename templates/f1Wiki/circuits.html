@@ -1,12 +1,192 @@
+{% extends "layouts/base.html" %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Player</title>
-</head>
-<body>
-    <h1>Welcome to the F1 Player Page</h1>
-</body>
-</html>
+{% block content %}
+
+
+<main class="flex justify-center items-center sm:justify-start md:justify-center min-h-screen w-full">
+  <div class="px-4 pt-6 w-full">
+    <div class="grid gap-4 w-full">
+      
+      <div
+        class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 w-full max-w-screen-lg mx-auto">
+        
+        <!-- 제목 -->
+        <h2 class="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4">F1 Circuits In 2024</h2>
+
+        <!-- 10개의 버튼 -->
+        <div class="flex flex-wrap gap-2 justify-center mb-4">
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGva')">
+            바레인 인터내셔널 서킷(바레인)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            제다 코니쉬 서킷(사우디아라비아)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvb')">
+            앨버트 파크 서킷(호주)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvc')">
+            스즈카 서킷(일본)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGve')">
+            상하이 인터내셔널 서킷(중국)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGw4')">
+            마이애미 인터내셔널 오토드롬(미국)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvf')">
+            이몰라 서킷(이탈리아)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvg')">
+            모나코 서킷(모나코)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvh')">
+            질 빌뇌브 서킷(캐나다)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvi')">
+            바르셀로나 카탈루냐 서킷(스페인)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvj')">
+            레드불 링(오스트리아)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvk')">
+            실버스톤 서킷(영국)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvm')">
+            헝가로링(헝가리)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvo')">
+            스파프랑코르샹 서킷(벨기에)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            잔드보르트 서킷(네덜란드)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvq')">
+            몬차 국립 자동차 경주장(이탈리아)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            바쿠 시가지 서킷(바쿠)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            마리나 베이 시가지 서킷(싱가포르)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvs')">
+            서킷 오브 디 아메리카(미국)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            멕시코(멕시코 시티)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvt')">
+            조제 카를로스 파시 자동차 경주장(브라질)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            미국(라스베이거스)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('')">
+            카타르(루시알)
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGvv')">
+            야스 마리나 서킷(아랍에미리트)
+          </button>
+        </div>
+
+        <!-- iframe 컨테이너 -->
+        <div id="wikipedia-container" 
+             class="mt-4 space-y-4 overflow-hidden bg-gray-50 dark:bg-gray-900 p-4 rounded-lg w-full">
+
+            <div id="error-message"
+                class="hidden text-red-500 text-center text-lg font-bold p-4">
+                Sorry, Wikipedia page does not exist... please wait.
+            </div>
+          <iframe 
+            id="dynamic-iframe"
+            src="" 
+            width="100%"
+            height="700px"
+            class="hidden"
+            style="border:none; display: block;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
+
+{% block extra_js %}
+
+
+<script>
+  function updateIframe(url) {
+    const iframe = document.getElementById('dynamic-iframe');
+    const errorMessage = document.getElementById('error-message');
+
+    if (!url) {
+      // URL이 없으면 메시지 표시, iframe 숨김
+      errorMessage.classList.remove('hidden');
+      iframe.classList.add('hidden');
+    } else {
+      // URL이 있으면 iframe 업데이트 및 메시지 숨김
+      iframe.src = url;
+      errorMessage.classList.add('hidden');
+      iframe.classList.remove('hidden');
+    }
+  }
+</script>
+
+
+
+
+
+
+
+{% endblock extra_js %}
