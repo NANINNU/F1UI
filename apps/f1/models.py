@@ -125,7 +125,7 @@ class Constructorstandings(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'constructorstandings'
+        db_table = 'constructorStandings'
 
 
 class DjangoAdminLog(models.Model):
