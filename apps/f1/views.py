@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Drivers, Constructors, Races, Results
+from .models import Drivers, Constructors, Races, Results, Constructorstandings
 
 def f1_search(request):
     search_type = request.GET.get('search_type', '')  # driver 또는 constructor
-    query = request.GET.get('query', '')  # 검색어
+    query = request.GET.get('query', '').strip()  # 검색어
     circuit_query = request.GET.get('circuit', '')  # 서킷 이름
 
     suggestions = []  # 자동완성용 이름 목록
@@ -13,10 +13,9 @@ def f1_search(request):
 
     if search_type == 'driver':
         # 드라이버 이름 검색
-        suggestions = Drivers.objects.filter(name__icontains=query)
-        if query and len(suggestions) == 1:  # 정확한 드라이버 선택 시
-            driver = suggestions.first()
-
+        suggestions = Drivers.objects.filter(name__icontains=query).values('name')
+        driver = Drivers.objects.filter(name=query).first()  # 정확히 일치하는 드라이버 선택
+        if driver:
             # 드라이버가 출전한 레이스 ID 가져오기
             race_ids = Results.objects.filter(driverid=driver.driverid).values_list('raceid', flat=True)
 
@@ -49,12 +48,11 @@ def f1_search(request):
 
     elif search_type == 'constructor':
         # 컨스트럭터 이름 검색
-        suggestions = Constructors.objects.filter(name__icontains=query)
-        if query and len(suggestions) == 1:  # 정확한 컨스트럭터 선택 시
-            constructor = suggestions.first()
-
+        suggestions = Constructors.objects.filter(name__icontains=query).values('name')
+        constructor = Constructors.objects.filter(name=query).first()  # 정확히 일치하는 컨스트럭터 선택
+        if constructor:
             # 컨스트럭터가 출전한 레이스 ID 가져오기
-            race_ids = Results.objects.filter(constructorid=constructor.constructorid).values_list('raceid', flat=True)
+            race_ids = Constructorstandings.objects.filter(constructorid=constructor.constructorid).values_list('raceid', flat=True)
 
             # 컨스트럭터가 출전한 서킷 목록 가져오기
             circuits = Races.objects.filter(raceid__in=race_ids).values('name').distinct()
@@ -64,8 +62,8 @@ def f1_search(request):
                 # 선택된 서킷의 레이스 데이터 가져오기
                 selected_races = Races.objects.filter(name=circuit_query, raceid__in=race_ids).values('raceid', 'year')
 
-                # 선택된 서킷의 Results에서 데이터 가져오기
-                results = Results.objects.filter(
+                # 선택된 서킷의 Constructorstandings에서 데이터 가져오기
+                standings = Constructorstandings.objects.filter(
                     raceid__in=[race['raceid'] for race in selected_races],
                     constructorid=constructor.constructorid
                 ).values('raceid', 'position')
@@ -73,10 +71,10 @@ def f1_search(request):
                 # 그래프 데이터 생성
                 year_position_map = {race['year']: None for race in selected_races}  # 초기화
 
-                for result in results:
+                for standing in standings:
                     for race in selected_races:
-                        if result['raceid'] == race['raceid']:
-                            year_position_map[race['year']] = result['position']
+                        if standing['raceid'] == race['raceid']:
+                            year_position_map[race['year']] = standing['position']
                             break
 
                 # 그래프용 라벨 및 데이터 생성 (출전한 연도만 포함)
