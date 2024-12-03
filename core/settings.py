@@ -31,6 +31,7 @@ if not SECRET_KEY:
     SECRET_KEY = 'SuperSecret776'
 
 # Enable/Disable DEBUG Mode
+# DEBUG = False
 DEBUG = str2bool(os.environ.get('DEBUG'))
 print(' DEBUG -> ' + str(DEBUG) ) 
 
@@ -134,10 +135,10 @@ if DB_ENGINE and DB_NAME and DB_USERNAME:
     DATABASES = { 
       'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME'    : 'F1db',
-        'USER'    : 'root',
-        'PASSWORD': '6251581aA',
-        'HOST'    : 'localhost',
+        'NAME'    : 'F1DB',
+        'USER'    : 'park',
+        'PASSWORD': '110900',
+        'HOST'    : '54.252.123.170',
         'PORT'    : '3306',
         }, 
     }

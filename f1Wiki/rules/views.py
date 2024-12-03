@@ -15,6 +15,7 @@ def index(request):
     products = serializers.serialize('json', Product.objects.all())
     context = {
         'segment'  : 'rules',
-        'parent'   : 'f1Wiki'
+        'parent'   : 'f1Wiki',
+        'products': products
     }
-    return render(request, 'f1Wiki/rules.html', context)
+    return render(request, 'f1Wiki/rules.html')

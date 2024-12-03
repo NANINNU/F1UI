@@ -19,3 +19,8 @@ def index(request):
         'products': products
     }
     return render(request, 'f1Wiki/constructors.html')
+
+def show_example_wikipedia_page(request):
+    # 위키피디아 예시 URL
+    example_url = "https://w.wiki/CGiX"
+    return render(request, 'f1Wiki/constructors.html', {'example_url': example_url})

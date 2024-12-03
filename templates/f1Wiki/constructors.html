@@ -1,0 +1,116 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<main class="flex justify-center items-center sm:justify-start md:justify-center min-h-screen w-full">
+  <div class="px-4 pt-6 w-full">
+    <div class="grid gap-4 w-full">
+      
+      <div
+        class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 w-full max-w-screen-lg mx-auto">
+        
+        <!-- 제목 -->
+        <h2 class="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4">F1 Constructors In 2024</h2>
+
+        <!-- 10개의 버튼 -->
+        <div class="flex flex-wrap gap-2 justify-center mb-4">
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGiX')">
+            Red Bull
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGiU')">
+            McLaren
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGic')">
+            Ferrari
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGiZ')">
+            Mercedes-Benz
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGiv')">
+            Haas
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGiq')">
+            RB
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGig')">
+            Alphine
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGig')">
+            Aston Martin
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGis')">
+            Kick-Jauber
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-300 text-black text-sm font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" 
+            onclick="updateIframe('https://w.wiki/CGin')">
+            Williams
+          </button>
+        </div>
+
+        <!-- iframe 컨테이너 -->
+        <div id="wikipedia-container" 
+             class="mt-4 space-y-4 overflow-hidden bg-gray-50 dark:bg-gray-900 p-4 rounded-lg w-full">
+          <iframe 
+            id="dynamic-iframe"
+            src="" 
+            width="100%"
+            height="700px"
+            class="hidden"
+            style="border:none; display: block;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
+
+{% block extra_js %}
+
+
+<script>
+  function updateIframe(url) {
+    const iframe = document.getElementById('dynamic-iframe');
+    const errorMessage = document.getElementById('error-message');
+    if (!url) {
+      // URL이 없으면 메시지 표시, iframe 숨김
+      errorMessage.classList.remove('hidden');
+      iframe.classList.add('hidden');
+    } else {
+      // URL이 있으면 iframe 업데이트 및 메시지 숨김
+      iframe.src = url;
+      errorMessage.classList.add('hidden');
+      iframe.classList.remove('hidden');
+    }
+  }
+</script>
+
+
+
+
+
+
+
+{% endblock extra_js %}
