@@ -133,16 +133,17 @@
                             <a href="{% url 'rules' %}"
                                 class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">F1 Rule</a>
                         </li>
+                        <li>
+                            <a href="{% url 'signout' %}" 
+                                class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-red-100 dark:text-gray-200 dark:hover:bg-red-700">
+                                <svg class="w-6 h-6 text-gray-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7 9a1 1 0 100 2h6a1 1 0 100-2H7zM4 4a2 2 0 012-2h8a2 2 0 012 2v1a1 1 0 11-2 0V4H6v12h8v-1a1 1 0 112 0v1a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="ml-3 text-red-500 dark:text-red-400">Logout</span>
+                            </a>
+                        </li>
                     </ul>
-                    <li>
-                        <a href="{% url 'signout' %}" 
-                            class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-red-100 dark:text-gray-200 dark:hover:bg-red-700">
-                            <svg class="w-6 h-6 text-gray-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7 9a1 1 0 100 2h6a1 1 0 100-2H7zM4 4a2 2 0 012-2h8a2 2 0 012 2v1a1 1 0 11-2 0V4H6v12h8v-1a1 1 0 112 0v1a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="ml-3 text-red-500 dark:text-red-400">Logout</span>
-                        </a>
-                    </li>
+                    
             </div>
         </div>
         <div class="absolute bottom-0 left-0 justify-center hidden w-full p-4 space-x-4 bg-white lg:flex dark:bg-gray-800"

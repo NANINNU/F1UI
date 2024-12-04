@@ -2,10 +2,6 @@ from django.shortcuts import render
 from apps.common.models import Product
 from django.core import serializers
 
-#import for namuwiki
-import requests
-from bs4 import BeautifulSoup
-from django.shortcuts import render
 
 
 

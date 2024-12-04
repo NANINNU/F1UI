@@ -31,9 +31,9 @@ if not SECRET_KEY:
     SECRET_KEY = 'SuperSecret776'
 
 # Enable/Disable DEBUG Mode
-# DEBUG = False
-DEBUG = str2bool(os.environ.get('DEBUG'))
-print(' DEBUG -> ' + str(DEBUG) ) 
+DEBUG = False
+# DEBUG = str2bool(os.environ.get('DEBUG'))
+# print(' DEBUG -> ' + str(DEBUG) ) 
 
 # Hosts Settings
 ALLOWED_HOSTS = ['*']
@@ -43,6 +43,12 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http:
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+# ALLOWED_HOSTS = ['127.0.0.1', '54.252.123.170']  # EC2 서버 IP 추가
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://54.252.123.170',  # EC2 서버 IP
+#     'http://127.0.0.1:8000',  # 로컬 환경
+#     'http://localhost:8000',  # 로컬 환경
+# ]
 
 # Application definition
 
