@@ -6,6 +6,7 @@ from apps.common.models import Product
 from apps.users.models import Profile
 from apps.users.forms import SigninForm, SignupForm, UserPasswordChangeForm, UserSetPasswordForm, UserPasswordResetForm, ProfileForm
 from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
@@ -25,11 +26,12 @@ def index(request):
         
     return HttpResponse("INDEX Users" + ' ' + prodName)
 
-
-
+    
 class SignInView(LoginView):
-    form_class = SigninForm
+    # form_class = SigninForm
+    form_class = AuthenticationForm
     template_name = "authentication/sign-in.html"
+    redirect_authenticated_user = False
 
 class SignUpView(CreateView):
     form_class = SignupForm
@@ -53,6 +55,9 @@ def signout_view(request):
     logout(request)
     return redirect(reverse('signin'))
 
+def custom_logout_view(request):
+    logout(request)  # 세션 종료
+    return redirect('/')
 
 @login_required(login_url='/users/signin/')
 def profile(request):

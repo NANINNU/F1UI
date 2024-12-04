@@ -14,4 +14,4 @@ def index(request):
 def starter(request):
 
   context = {}
-  return render(request, "pages/starter.html", context)
+  return render(request, "authentication/sign-in.html", context)
