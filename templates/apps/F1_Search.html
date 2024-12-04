@@ -1,14 +1,10 @@
-
-
 {% extends "layouts/base.html" %}
 {% load static %}
 
 {% block content %}
-
 <main class="flex justify-center items-center sm:justify-start md:justify-center min-h-screen w-full">
   <div class="px-4 pt-6 w-full">
     <div class="grid gap-4 w-full">
-
       <div
         class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 w-full max-w-screen-lg mx-auto">
 
@@ -47,7 +43,7 @@
           <li>
             <a href="?search_type={{ search_type }}&query={{ suggestion.name }}"
                class="text-blue-600 hover:underline">
-              {{ suggestion.name }}
+              {{ suggestion.name }} ({{ suggestion.nationality }})
             </a>
           </li>
           {% endfor %}
@@ -141,122 +137,8 @@
           </script>
         </div>
         {% endif %}
-
       </div>
     </div>
   </div>
 </main>
-
 {% endblock content %}
-
-<!-- <form method="get" action="{% url 'f1_search' %}">
-    <label for="search_type">Search Type:</label>
-    <select name="search_type" id="search_type" required>
-        <option value="driver" {% if search_type == 'driver' %}selected{% endif %}>Driver</option>
-        <option value="constructor" {% if search_type == 'constructor' %}selected{% endif %}>Constructor</option>
-    </select>
-
-    <label for="query">Search:</label>
-    <input type="text" id="query" name="query" value="{{ query }}" required autocomplete="off">
-    <button type="submit">Search</button>
-</form> -->
-
-<!-- 자동완성 결과 -->
-<!-- {% if suggestions %}
-<ul>
-    {% for suggestion in suggestions %}
-    <li>
-        <a href="?search_type={{ search_type }}&query={{ suggestion.name }}">
-            {{ suggestion.name }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %} -->
-
-<!-- 서킷 선택 -->
-<!-- {% if circuits %}
-<h2>Select Circuit</h2>
-<form method="get" action="{% url 'f1_search' %}">
-    <input type="hidden" name="search_type" value="{{ search_type }}">
-    <input type="hidden" name="query" value="{{ query }}">
-    <label for="circuit">Circuit:</label>
-    <select name="circuit" id="circuit">
-        {% for circuit in circuits %}
-        <option value="{{ circuit.name }}" {% if circuit.name == request.GET.circuit %}selected{% endif %}>
-            {{ circuit.name }}
-        </option>
-        {% endfor %}
-    </select>
-    <button type="submit">Show Graph</button>
-</form>
-{% endif %} -->
-
-<!-- 그래프 -->
-<!-- {% if graph_data %}
-<h2>Graph</h2>
-<canvas id="rankChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('rankChart').getContext('2d');
-    const labels = JSON.parse('{{ graph_labels|escapejs }}');
-    const rawData = JSON.parse('{{ graph_data|escapejs }}');
-
-    // Retired 값을 처리: -1을 (최대 순위 + 1)로 변환하여 맨 아래에 표시
-    const maxPosition = Math.max(...rawData.filter(value => value !== -1)); // 유효한 순위 중 최대값
-    const processedData = rawData.map(value => value === -1 ? maxPosition + 1 : value);
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Position',
-                data: processedData,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                spanGaps: true, // 데이터가 없는 구간은 선을 연결
-            }],
-        },
-        options: {
-            scales: {
-                y: {
-                    reverse: true, // 낮은 값이 위로 오게 설정
-                    ticks: {
-                        callback: function(value) {
-                            if (value === maxPosition + 1) {
-                                return 'Retired'; // Retired를 y축에 표시
-                            }
-                            return value; // 나머지는 순위 값
-                        },
-                    },
-                    min: 1, // 최소값을 1로 설정
-                    max: maxPosition + 1, // 최대값을 Retired 포함하여 설정
-                    title: {
-                        display: true,
-                        text: 'Position',
-                    },
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Year',
-                    },
-                },
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const value = context.raw;
-                            return value === maxPosition + 1
-                                ? 'Retired' // 툴팁에 "Retired" 표시
-                                : `Position: ${value}`;
-                        },
-                    },
-                },
-            },
-        },
-    });
-</script>
-{% endif %} -->

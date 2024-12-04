@@ -2,9 +2,9 @@ from django.shortcuts import render
 from .models import Drivers, Constructors, Races, Results, Constructorstandings
 
 def f1_search(request):
-    search_type = request.GET.get('search_type', '')  # driver 또는 constructor
+    search_type = request.GET.get('search_type', '').strip()  # driver 또는 constructor
     query = request.GET.get('query', '').strip()  # 검색어
-    circuit_query = request.GET.get('circuit', '')  # 서킷 이름
+    circuit_query = request.GET.get('circuit', '').strip()  # 서킷 이름
 
     suggestions = []  # 자동완성용 이름 목록
     circuits = None
@@ -12,8 +12,8 @@ def f1_search(request):
     graph_data = []
 
     if search_type == 'driver':
-        # 드라이버 이름 검색
-        suggestions = Drivers.objects.filter(name__icontains=query).values('name')
+        # 드라이버 이름 검색 (국가 포함)
+        suggestions = Drivers.objects.filter(name__icontains=query).values('name', 'nationality')
         driver = Drivers.objects.filter(name=query).first()  # 정확히 일치하는 드라이버 선택
         if driver:
             # 드라이버가 출전한 레이스 ID 가져오기
@@ -47,8 +47,8 @@ def f1_search(request):
                 graph_data = [year_position_map[year] for year in graph_labels]
 
     elif search_type == 'constructor':
-        # 컨스트럭터 이름 검색
-        suggestions = Constructors.objects.filter(name__icontains=query).values('name')
+        # 컨스트럭터 이름 검색 (국가 포함)
+        suggestions = Constructors.objects.filter(name__icontains=query).values('name', 'nationality')
         constructor = Constructors.objects.filter(name=query).first()  # 정확히 일치하는 컨스트럭터 선택
         if constructor:
             # 컨스트럭터가 출전한 레이스 ID 가져오기
